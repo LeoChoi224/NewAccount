@@ -46,6 +46,7 @@ public class TransactionService {
                 .orElseThrow(() -> new AccountException(ACCOUNT_NOT_FOUND));
 
         validateUseBalance(user, account, amount);
+        return null;
     }
 
     private void validateUseBalance(AccountUser user, Account account, Long amount) {
