@@ -3,11 +3,7 @@ package com.example.account.dto;
 import com.example.account.type.TransactionResultType;
 import lombok.*;
 
-import javax.transaction.Transaction;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 public class UseBalance {
@@ -32,7 +28,7 @@ public class UseBalance {
 
         @NotNull
         @Min(10)
-        @Min(1000_000_000)
+        @Max(1000_000_000)
         private Long amount;
     }
 
@@ -58,5 +54,14 @@ public class UseBalance {
         private LocalDateTime transactedAt;
         private LocalDateTime registeredAt;
 
+        public static Response from(TransactionDto transactionDto) {
+            return Response.builder()
+                    .accountNumber(transactionDto.getAccountNumber())
+                    .transactionResult(transactionDto.getTransactionResultType())
+                    .transactionId(transactionDto.getTransactionId())
+                    .amount(transactionDto.getAmount())
+                    .transactedAt(transactionDto.getTransactedAt())
+                    .build();
+        }
     }
 }
