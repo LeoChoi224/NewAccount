@@ -119,8 +119,6 @@ class TransactionServiceTest {
         given(accountRepository.findByAccountNumber(anyString()))
                 .willReturn(Optional.empty());
 
-        ArgumentCaptor<Account> captor = ArgumentCaptor.forClass(Account.class);
-
         //when
         AccountException exception = assertThrows(AccountException.class,
                 () -> transactionService.useBalance(1L, "1000000000", 100L));
@@ -486,10 +484,10 @@ class TransactionServiceTest {
         TransactionDto transactionDto = transactionService.queryTransaction("trxId");
 
         //then
-        assertEquals(USE,transactionDto.getTransactionType());
-        assertEquals(S,transactionDto.getTransactionResultType());
-        assertEquals(CANCEL_AMOUNT,transactionDto.getAmount());
-        assertEquals("transactionId",transactionDto.getTransactionId());
+        assertEquals(USE, transactionDto.getTransactionType());
+        assertEquals(S, transactionDto.getTransactionResultType());
+        assertEquals(CANCEL_AMOUNT, transactionDto.getAmount());
+        assertEquals("transactionId", transactionDto.getTransactionId());
     }
 
     @Test
