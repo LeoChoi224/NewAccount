@@ -142,7 +142,7 @@ public class TransactionService {
     public TransactionDto queryTransaction(String transactionId) {
         return TransactionDto.fromEntity(
                 transactionRepository.findByTransactionId(transactionId)
-                         .orElseThrow(() -> new AccountException(TRANSACTION_NOT_FOUND))
+                        .orElseThrow(() -> new AccountException(TRANSACTION_NOT_FOUND))
         );
     }
 }
