@@ -21,14 +21,14 @@ public class LockAopAspect {
             AccountLockIdInterface request
     ) throws Throwable {
         // lock 취득 시도
-        lockService.lock(accountNumber);
+        lockService.lock(request.getAccountNumber());
         try {
             // before
             return pjp.proceed();
             // after
         } finally {
             // lock 해제
-        lockService.unlock(accountNumber);
+        lockService.unlock(request.getAccountNumber());
         }
     }
 }
